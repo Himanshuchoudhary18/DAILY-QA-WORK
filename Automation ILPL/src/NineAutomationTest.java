@@ -10,8 +10,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-
-public class SeventhAutomationTest {
+import java.util.List;
+public class NineAutomationTest {
     public static String browser = "Edge";
     public static WebDriver driver;
 
@@ -43,41 +43,24 @@ public class SeventhAutomationTest {
             driver = new EdgeDriver();
             driver.get("https://www.sugarcrm.com/au/request-demo/");
             driver.manage().window().maximize();
-            // Cookies Accepted or handled
             WebElement cookies = driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"));
             cookies.click();
 
-            // Filling the Form
-            driver.findElement(By.id("input_1_1")).sendKeys("himanshupro83@gmail.com");
-            driver.findElement(By.id("input_1_3_3")).sendKeys("himanshu_testing");
-            driver.findElement(By.id("input_1_3_6")).sendKeys("choudhary_test");
-            driver.findElement(By.id("input_1_4")).sendKeys("7669966400");
-            driver.findElement(By.id("input_1_5")).sendKeys("QA Engineer");
-            driver.findElement(By.id("input_1_6")).sendKeys("Infinite Locus Pvt Limited");
-            // Handling Dropdown
-            WebElement dropdown_companysize = driver.findElement(By.id("input_1_8"));
-            Select select = new Select(dropdown_companysize);
-            // select.selectByValue("level4");
-            // OR //
-            select.selectByVisibleText("251 - 500 employees");
-            // OR //
-            // select.selectByIndex(3);
-            // driver.quit();
-            WebElement country = driver.findElement(By.id("input_1_84"));
-            Select selectCountry = new Select(country);
-            // selectCountry.selectByValue("IN");
-            // OR //
-            // selectCountry.selectByIndex();
-            // OR //
-            selectCountry.selectByVisibleText("India");
+            WebElement link = driver.findElement(By.xpath("//*[@id=\"menu-item-22664\"]/a"));
+            Actions action = new Actions(driver);
+            action.moveToElement(link).perform();
 
-            driver.findElement(By.xpath("//*[@id=\"input_1_10\"]")).sendKeys("Company");
-
-            // Using Actions
-            WebElement submitBtn = driver.findElement(By.xpath("//*[@id='gform_submit_button_1']"));
-            Actions actions = new Actions(driver);
-            actions.moveToElement(submitBtn).perform();
-            submitBtn.click();
+            List<WebElement> getAllLinks = driver.findElements(By.tagName("a"));
+            System.out.println(getAllLinks.size());
+            for (int i = 0; i < getAllLinks.size(); i++)
+            {
+                System.out.print(getAllLinks.get(i).getText());
+                System.out.println("\n");
+                System.out.print(getAllLinks.get(i).getAttribute("href"));
+                System.out.print(getAllLinks.get(i).getTagName());
+                System.out.print(getAllLinks.get(i).isDisplayed());
+                System.out.print(getAllLinks.get(i).getClass());
+            }
         }
         catch (Exception e) {
             e.printStackTrace();

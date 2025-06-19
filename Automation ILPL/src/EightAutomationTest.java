@@ -10,8 +10,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
-public class SeventhAutomationTest {
+public class EightAutomationTest {
     public static String browser = "Edge";
     public static WebDriver driver;
 
@@ -41,46 +42,24 @@ public class SeventhAutomationTest {
                 // It is not necessary to have else in "if" statement. Same we don't need break statement everytime in every switch case but if it not present, then the purpose of switch-case will be violated because switch means multiple cases and break will work when switch will satisfy the condition as it is present in it and then break; is also within it so it will also need to break the flow o/w all will be executed.
             }
             driver = new EdgeDriver();
-            driver.get("https://www.sugarcrm.com/au/request-demo/");
+            driver.get("https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html");
             driver.manage().window().maximize();
-            // Cookies Accepted or handled
-            WebElement cookies = driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"));
-            cookies.click();
 
-            // Filling the Form
-            driver.findElement(By.id("input_1_1")).sendKeys("himanshupro83@gmail.com");
-            driver.findElement(By.id("input_1_3_3")).sendKeys("himanshu_testing");
-            driver.findElement(By.id("input_1_3_6")).sendKeys("choudhary_test");
-            driver.findElement(By.id("input_1_4")).sendKeys("7669966400");
-            driver.findElement(By.id("input_1_5")).sendKeys("QA Engineer");
-            driver.findElement(By.id("input_1_6")).sendKeys("Infinite Locus Pvt Limited");
-            // Handling Dropdown
-            WebElement dropdown_companysize = driver.findElement(By.id("input_1_8"));
-            Select select = new Select(dropdown_companysize);
-            // select.selectByValue("level4");
-            // OR //
-            select.selectByVisibleText("251 - 500 employees");
-            // OR //
-            // select.selectByIndex(3);
-            // driver.quit();
-            WebElement country = driver.findElement(By.id("input_1_84"));
-            Select selectCountry = new Select(country);
-            // selectCountry.selectByValue("IN");
-            // OR //
-            // selectCountry.selectByIndex();
-            // OR //
-            selectCountry.selectByVisibleText("India");
+            WebElement find = driver.findElement(By.id("multi-select"));
+            Select select = new Select(find);
+            select.selectByValue("California");
+            select.selectByIndex(5);
 
-            driver.findElement(By.xpath("//*[@id=\"input_1_10\"]")).sendKeys("Company");
-
-            // Using Actions
-            WebElement submitBtn = driver.findElement(By.xpath("//*[@id='gform_submit_button_1']"));
-            Actions actions = new Actions(driver);
-            actions.moveToElement(submitBtn).perform();
-            submitBtn.click();
+            List<WebElement> selectedItems = select.getAllSelectedOptions();
+            System.out.println("Selected Items : " + selectedItems.size());
+            select.deselectAll();
+            List<WebElement> deselctItems = select.getAllSelectedOptions();
+            System.out.println(deselctItems.size());
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+
+
