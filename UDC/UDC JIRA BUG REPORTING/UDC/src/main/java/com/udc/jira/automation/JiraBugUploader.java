@@ -18,7 +18,7 @@ import java.util.Base64;
 public class JiraBugUploader {
     private static final String JIRA_BASE_URL  = "https://zapgift.atlassian.net";
     private static final String JIRA_EMAIL     = "himanshu.choudhary@infinitelocus.com";
-    private static final String JIRA_API_TOKEN = "ATATT3xFfGF0IsoBmX3e7CEuRErMH7AW4U1AuWiNxtFAdnOtsAK0SqO9cdCGEGuJMqg-Gp-l_rAYldn3PtsSYlkfQoecbRvx2jMbkWcLAglnsi73Md67VMUJI4JgjlzkSqYTp6vLqMvMpLY3MUE_aeJz3QbM9488QKBcTQHHauvqDjwyg9qYp58=A2D1422F";
+    private static final String JIRA_API_TOKEN = "YOUR_JIRA_API_KEY";
     private static final String PROJECT_KEY    = "UL";
 
     public static void main(String[] args) throws Exception {
