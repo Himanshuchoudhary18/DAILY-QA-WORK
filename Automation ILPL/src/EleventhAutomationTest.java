@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class TenthAutomationTest {
+public class EleventhAutomationTest {
     public static String browser = "Edge";
     public static WebDriver driver;
 
@@ -39,26 +39,28 @@ public class TenthAutomationTest {
             }
             driver = new EdgeDriver();
             driver.manage().window().maximize();
-            driver.get("https://www.makemytrip.com");
+            driver.get("https://www.sugarcrm.com/request-demo/");
+            WebElement cookies = driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"));
+            cookies.click();
+
+            // If unable to find the xpath "through right click method"
+            WebElement checkbox = driver.findElement(By.xpath("//label[contains(text(),'I would like to receive information, tips, and off')]"));
+            Actions action = new Actions(driver);
+            action.moveToElement(checkbox).perform();
+            checkbox.click();
+            // Checking checkbox is Selected or not
+            boolean checkSelected = checkbox.isSelected();
+            System.out.println(checkSelected);
 
             Thread.sleep(2000);
-            // Not a suggested method to delay anything while performing testing (because it is like hard coding the automation test cases)
-            driver.findElement(By.xpath("//*[@id=\"SW\"]/div[1]/div[2]/div[2]/div/section/span")).click();
-
-            WebElement fromcity = driver.findElement(By.id("fromCity"));
-            fromcity.click();
-
-            WebElement searchbox = driver.findElement(By.xpath("//input[@placeholder='From']"));
-            searchbox.sendKeys("Chennai");
-
-            Thread.sleep(2000);
-            searchbox.sendKeys(Keys.ARROW_DOWN);
-            searchbox.sendKeys(Keys.ENTER);
-            driver.quit();
+            // For unselecting the checkbox
+            checkbox.click();
+            System.out.println(checkbox.isSelected());
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
     }
+
 }
